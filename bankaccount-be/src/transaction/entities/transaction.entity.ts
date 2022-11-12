@@ -1,12 +1,12 @@
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('transaction')
 export class Transaction extends BaseEntity {
-  @PrimaryGeneratedColumn({name:'transaction_Id'})
+  @PrimaryGeneratedColumn({name:'transactionId'})
   transactionID: number;
 
-  @Column({name:'Description'})
+  @Column({name:'description'})
   Description: string; 
 
-  @Column({name:'account_Id'})
+  @Column({name:'accountId'})
   accountID: number;
 }
