@@ -1,12 +1,24 @@
-import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Entity, Column, PrimaryGeneratedColumn,CreateDateColumn } from 'typeorm';
 @Entity('transaction')
 export class Transaction extends BaseEntity {
   @PrimaryGeneratedColumn({name:'transactionId'})
-  transactionID: number;
+  transactionId: number;
 
-  @Column({name:'description'})
-  Description: string; 
+  @Column({name:'Description'})
+  description: string; 
 
   @Column({name:'accountId'})
-  accountID: number;
+  accountId: number;
+
+  @Column({name:'targetaccountId'})
+  targetaccountId: number;
+  
+  @Column({name:'amount'})
+  amount: number;
+  
+  @CreateDateColumn()
+  Created: Date;
+
+  
+  
 }

@@ -4,7 +4,7 @@ import { join } from 'path';
 @Entity('account')
 export class Account extends BaseEntity {
   @PrimaryGeneratedColumn({name:'accountId'})
-  accountID: number;
+  accountId: number;
   
 
   @Column({name:'balance'})
