@@ -76,8 +76,9 @@ export class TransactionService {
         return interest
       }
       
-      async allTransaction (accountId : number): Promise<Transaction[]>{
-         return await this.transactionRepository.findBy({accountId})
+      async allTransaction (id : number): Promise<Transaction[]>{
+         return await this.transactionRepository.find({
+          where :[{accountId:id},{targetaccountId:id}]})
       }
-
+    
 }

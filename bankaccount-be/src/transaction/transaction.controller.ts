@@ -34,9 +34,9 @@ export class TransactionController {
   }
   
   @UseGuards(JwtAuthGuard)
-  @Get('/all/:accountId')
-  allTransaction(@Param('accountId') accountId: number): Promise<Transaction[]> {
-    return this.transactionService.allTransaction(accountId);
+  @Get('/all/:id')
+  allTransaction(@Param('id') id: number): Promise<Transaction[]> {
+    return this.transactionService.allTransaction(id);
   }
   
 }
