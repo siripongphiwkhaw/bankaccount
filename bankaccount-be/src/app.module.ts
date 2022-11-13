@@ -8,6 +8,7 @@ import { Transaction } from './transaction/entities/transaction.entity';
 import { TransactionModule } from './transaction/transaction.module';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
@@ -22,7 +23,8 @@ import { UserModule } from './user/user.module';
   }),
   TransactionModule,
   UserModule,
-  AccountModule],
+  AccountModule,
+  AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

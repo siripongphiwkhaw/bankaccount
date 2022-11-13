@@ -1,4 +1,6 @@
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {  BeforeInsert, JoinTable, ManyToOne, OneToMany} from 'typeorm';
+import { Account } from 'src/account/entities/account.entity';
 @Entity('user')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn({name:'userId'})
@@ -12,4 +14,7 @@ export class User extends BaseEntity {
 
   @Column({name:'password'})
   password: string;
+
+ 
+  
 }
