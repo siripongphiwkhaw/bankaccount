@@ -41,12 +41,22 @@ export class TransactionService {
     }
 
     async transfer(createTransactionDto: CreateTransactionDto): Promise<Account>{
+      if(createTransactionDto.accountId == createTransactionDto.targetaccountId){
+        throw new HttpException('Cant tranfer money to tranfer_account ', HttpStatus.BAD_REQUEST)
+      }
+      
       const account = await this.accountRepository.findOneBy({
            accountId:createTransactionDto.accountId
         });
-      const targetaccount = await this.accountRepository.findOneBy({
+        
+        const targetaccount = await this.accountRepository.findOneBy({
         accountId:createTransactionDto.targetaccountId
        });
+        
+        if(await this.checkAccount(createTransactionDto.targetaccountId) == false){
+          throw new HttpException('Your own account not exist', HttpStatus.BAD_REQUEST);
+        }
+        
         if(account.balance < createTransactionDto.amount){
           throw new HttpException('Your balance not enough', HttpStatus.BAD_REQUEST);
         }
@@ -80,5 +90,13 @@ export class TransactionService {
          return await this.transactionRepository.find({
           where :[{accountId:id},{targetaccountId:id}]})
       }
-    
+      async checkAccount(accountId: number): Promise<Boolean> {
+        const accounts = await this.accountRepository.findOneBy({ accountId });
+        if (accounts) {
+          return true
+        } else {
+          return false;
+        }
+      }
+      
 }
